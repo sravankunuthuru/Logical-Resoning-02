@@ -112,18 +112,18 @@
       <div class="puzzle02">
         <div class="flex-box02">
 
-          <input type="number" required class="box01" id="tableBox021" min="1" max="3" oninput="myTable2()">
+          <input type="number" required class="box01" id="tableBox021" min="1" max="3">
 
           <span id="symbols">+</span>
           <span id="symbols2">-</span>
           <span id="symbols7">+</span>
           <span id="symbols8">+</span>
 
-          <input type="number" required class="box01" id="tableBox022" min="1" max="3" oninput="myTable2()">
+          <input type="number" required class="box01" id="tableBox022" min="1" max="3">
 
           <input type="number" required class="box01" id="tableBox022" min="1" max="3" value="8" readonly>
 
-          <input type="number" required class="box01" id="tableBox023" min="1" max="3" oninput="myTable2()">
+          <input type="number" required class="box01" id="tableBox023" min="1" max="3">
 
           <span id="symbols3">=</span>
           <span id="symbols4">=</span>
@@ -131,13 +131,15 @@
           <span id="symbols5">=</span>
           <span id="symbols6">=</span>
 
-          <input type="number" required class="box01" id="tableBox024" min="1" max="3" oninput="myTable2()">
+          <input type="number" required class="box01" id="tableBox024" min="1" max="3">
 
           <input type="number" required class="box01" min="1" max="3" value="6" readonly>
 
           <input type="number" required class="box01" min="1" max="3" value="13" readonly>
 
           <input type="number" required class="box01" min="1" max="3" value="8" readonly>
+
+          <button onclick="myTable2()">Check Here</button>
 
         </div>
 
@@ -158,21 +160,18 @@
         const data3CurrentValue = Number(box3.value);
         const data4CurrentValue = Number(box4.value);
 
-        // Audio files
-
-
 
         // Conditions for box colors
 
         if (dataCurrentValue === 3.5) {
           box1.style.color = "white"
           box1.style.backgroundColor = "green";
-          new Audio("successAudio.wav").play()
+
         }
         else if (dataCurrentValue > 0) {
           box1.style.color = "white";
           box1.style.backgroundColor = "red";
-          new Audio("wrongSound.wav").play()
+
         }
         else {
 
@@ -182,12 +181,12 @@
         if (data2CurrentValue === 4.5) {
           box2.style.color = "white";
           box2.style.backgroundColor = "green";
-          new Audio("successAudio.wav").play()
+
         }
         else if (data2CurrentValue > 0) {
           box2.style.color = "white";
           box2.style.backgroundColor = "red";
-          new Audio("wrongSound.wav").play()
+
         }
         else {
           box2.style.color = "white";
@@ -197,35 +196,26 @@
         if (data3CurrentValue === 9.5) {
           box3.style.color = "white";
           box3.style.backgroundColor = "green"
-          new Audio("successAudio.wav").play()
+
 
         }
         else if (data3CurrentValue > 0) {
 
           box3.style.color = "white";
           box3.style.backgroundColor = "red";
-          new Audio("wrongSound.wav").play()
+
         }
         else {
-
           box3.style.color = "white";
-
           box3.style.backgroundColor = "white";
-
         }
         if (data4CurrentValue === 3.5) {
           box4.style.color = "white";
           box4.style.backgroundColor = "green";
-
-          new Audio("successAudio.wav").play()
-
         }
         else if (data4CurrentValue > 0) {
-
           box4.style.color = "white";
           box4.style.backgroundColor = "red";
-
-          new Audio("wrongSound.wav").play()
         }
         else {
           box4.style.color = "white";
@@ -233,6 +223,7 @@
 
         }
         showAlert()
+        ErrorAlert()
       }
 
 
@@ -242,6 +233,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     </script>
     <script>
+
+
+      // Audio files
+
+
+      let wrongAudio = new Audio("errorAudio.mp3")
+      let correctAudio = new Audio("sucessAudio.mp3")
+
+
+
       function showAlert() {
         const box1 = document.getElementById("tableBox021");
         const box2 = document.getElementById("tableBox022");
@@ -257,7 +258,8 @@
           data2CurrentValue === 4.5 &&
           data3CurrentValue === 9.5 &&
           data4CurrentValue === 3.5) {
-
+          correctAudio.play()
+          correctAudio.volume = 1
           Swal.fire({
             title: 'Congratulations!',
             text: 'You have solved the puzzle.',
@@ -276,7 +278,44 @@
           })
         }
       }
+      function ErrorAlert() {
+        const box1 = document.getElementById("tableBox021");
+        const box2 = document.getElementById("tableBox022");
+        const box3 = document.getElementById("tableBox023");
+        const box4 = document.getElementById("tableBox024");
 
+        const dataCurrentValue = Number(box1.value);
+        const data2CurrentValue = Number(box2.value);
+        const data3CurrentValue = Number(box3.value);
+        const data4CurrentValue = Number(box4.value);
+
+        if (dataCurrentValue !== 3.5 ||
+          data2CurrentValue !== 4.5 ||
+          data3CurrentValue !== 9.5 ||
+          data4CurrentValue !== 3.5) {
+          wrongAudio.play()
+          Swal.fire({
+            title: 'Incorrect',
+            text: 'You have entered incorrect values.',
+            icon: 'error',
+            confirmButtonText: 'Try again'
+          }).then(() => {
+            box1.value = ""
+            box2.value = ""
+            box3.value = ""
+            box4.value = ""
+
+            box1.style.backgroundColor = "white";
+            box1.style.color = "black"
+            box2.style.backgroundColor = "white";
+            box2.style.color = "black"
+            box3.style.backgroundColor = "white";
+            box3.style.color = "black"
+            box4.style.backgroundColor = "white";
+            box4.style.color = "black"
+          })
+        }
+      }
     </script>
 
 
