@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .box-01 {
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .flex-box {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 20px;
+        align-items: center;
+        margin: 100px;
+        justify-content: center;
+        width: 80vw;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!--                                              Puzzle 01                                           -->
+
+    <div class="flex-box">
+      <input type="number" required class="box-01" id="box-01">
+      <input type="number" required class="box-01" id="box-02">
+      <input type="number" required class="box-01" id="box-03" oninput="myFunction1()">
+      <input type="number" required class="box-01" id="box-04">
+      <input type="number" required class="box-01" id="box-05">
+      <input type="number" required class="box-01" id="box-06" oninput="myFunction2()">
+      <input type="number" required class="box-01" id="box-07">
+      <input type="number" required class="box-01" id="box-08">
+      <input type="number" required class="box-01" id="box-09" oninput="myFunction3()">
+    </div>
+
+
+    <script>
+      function myFunction1() {
+        let box1 = document.getElementById("box-01").value;
+        let box2 = document.getElementById("box-02").value;
+        let box3 = document.getElementById("box-03");
+        let sum = parseFloat(box1) * parseFloat(box2);
+        box3.value = sum + 1;
+      }
+
+      function myFunction2() {
+        let box4 = document.getElementById("box-04").value;
+        let box5 = document.getElementById("box-05").value;
+        let box6 = document.getElementById("box-06");
+        let sum2 = Number(box4) * Number(box5);
+        box6.value = sum2 + 2;
+      }
+      function myFunction3() {
+        let box7 = document.getElementById("box-07").value;
+        let box8 = document.getElementById("box-08").value;
+        let box9 = document.getElementById("box-09");
+        let sum3 = Number(box7) * Number(box8);
+        box9.value = sum3 + 3;
+      }
+    </script>
+  </body>
+</html>

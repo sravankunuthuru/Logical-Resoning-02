@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .box01 {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 50%;
+        border: 10px solid green;
+      }
+
+      .flex-box02 {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 80px;
+        align-items: top;
+        justify-content: right;
+        margin-top: -300px;
+        margin-right: 200px;
+        text-align: center;
+      }
+
+      #symbols {
+        position: absolute;
+        font-size: 50px;
+        margin-top: 40px;
+        margin-left: 940px;
+      }
+
+      #symbols2 {
+        position: absolute;
+        font-size: 50px;
+        margin-top: 240px;
+        margin-left: 940px;
+      }
+
+      #symbols3 {
+        position: absolute;
+        font-size: 60px;
+        margin-top: 330px;
+        margin-left: 840px;
+        transform: rotate(90deg);
+      }
+
+      #symbols4 {
+        position: absolute;
+        font-size: 60px;
+        margin-top: 330px;
+        margin-left: 1040px;
+        transform: rotate(90deg);
+      }
+
+      #symbols5 {
+        position: absolute;
+        font-size: 60px;
+        margin-left: 1140px;
+        margin-top: 40px;
+        transform: rotate(180deg);
+      }
+
+      #symbols6 {
+        position: absolute;
+        font-size: 60px;
+        margin-left: 1140px;
+        margin-top: 240px;
+        transform: rotate(180deg);
+      }
+
+      #symbols7 {
+        position: absolute;
+        font-size: 60px;
+        margin-top: 120px;
+        margin-left: 830px;
+      }
+
+      #symbols8 {
+        position: absolute;
+        font-size: 60px;
+        margin-left: 1040px;
+        margin-top: 120px;
+      }
+
+      .container {
+        position: relative;
+        top: 400px;
+        left: -750px;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+
+
+
+    <!--                                              Puzzle 02                                           -->
+
+    <div class="container" id="container">
+      <div class="puzzle02">
+        <div class="flex-box02">
+
+          <input type="number" required class="box01" id="tableBox021" min="1" max="3" oninput="myTable2()">
+
+          <span id="symbols">+</span>
+          <span id="symbols2">-</span>
+          <span id="symbols7">+</span>
+          <span id="symbols8">+</span>
+
+          <input type="number" required class="box01" id="tableBox022" min="1" max="3" oninput="myTable2()">
+
+          <input type="number" required class="box01" id="tableBox022" min="1" max="3" value="8" readonly>
+
+          <input type="number" required class="box01" id="tableBox023" min="1" max="3" oninput="myTable2()">
+
+          <span id="symbols3">=</span>
+          <span id="symbols4">=</span>
+
+          <span id="symbols5">=</span>
+          <span id="symbols6">=</span>
+
+          <input type="number" required class="box01" id="tableBox024" min="1" max="3" oninput="myTable2()">
+
+          <input type="number" required class="box01" min="1" max="3" value="6" readonly>
+
+          <input type="number" required class="box01" min="1" max="3" value="13" readonly>
+
+          <input type="number" required class="box01" min="1" max="3" value="8" readonly>
+
+        </div>
+
+      </div>
+    </div>
+    <script>
+
+
+
+      function myTable2() {
+        const box1 = document.getElementById("tableBox021");
+        const box2 = document.getElementById("tableBox022");
+        const box3 = document.getElementById("tableBox023");
+        const box4 = document.getElementById("tableBox024");
+
+        const dataCurrentValue = Number(box1.value);
+        const data2CurrentValue = Number(box2.value);
+        const data3CurrentValue = Number(box3.value);
+        const data4CurrentValue = Number(box4.value);
+
+        // Audio files
+
+
+
+        // Conditions for box colors
+
+        if (dataCurrentValue === 3.5) {
+          box1.style.color = "white"
+          box1.style.backgroundColor = "green";
+          new Audio("successAudio.wav").play()
+        }
+        else if (dataCurrentValue > 0) {
+          box1.style.color = "white";
+          box1.style.backgroundColor = "red";
+          new Audio("wrongSound.wav").play()
+        }
+        else {
+
+          box1.style.color = "white";
+          box1.style.backgroundColor = "white"
+        }
+        if (data2CurrentValue === 4.5) {
+          box2.style.color = "white";
+          box2.style.backgroundColor = "green";
+          new Audio("successAudio.wav").play()
+        }
+        else if (data2CurrentValue > 0) {
+          box2.style.color = "white";
+          box2.style.backgroundColor = "red";
+          new Audio("wrongSound.wav").play()
+        }
+        else {
+          box2.style.color = "white";
+          box2.style.backgroundColor = "white";
+
+        }
+        if (data3CurrentValue === 9.5) {
+          box3.style.color = "white";
+          box3.style.backgroundColor = "green"
+          new Audio("successAudio.wav").play()
+
+        }
+        else if (data3CurrentValue > 0) {
+
+          box3.style.color = "white";
+          box3.style.backgroundColor = "red";
+          new Audio("wrongSound.wav").play()
+        }
+        else {
+
+          box3.style.color = "white";
+
+          box3.style.backgroundColor = "white";
+
+        }
+        if (data4CurrentValue === 3.5) {
+          box4.style.color = "white";
+          box4.style.backgroundColor = "green";
+
+          new Audio("successAudio.wav").play()
+
+        }
+        else if (data4CurrentValue > 0) {
+
+          box4.style.color = "white";
+          box4.style.backgroundColor = "red";
+
+          new Audio("wrongSound.wav").play()
+        }
+        else {
+          box4.style.color = "white";
+          box4.style.backgroundColor = "white";
+
+        }
+        showAlert()
+      }
+
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    </script>
+    <script>
+      function showAlert() {
+        const box1 = document.getElementById("tableBox021");
+        const box2 = document.getElementById("tableBox022");
+        const box3 = document.getElementById("tableBox023");
+        const box4 = document.getElementById("tableBox024");
+
+        const dataCurrentValue = Number(box1.value);
+        const data2CurrentValue = Number(box2.value);
+        const data3CurrentValue = Number(box3.value);
+        const data4CurrentValue = Number(box4.value);
+
+        if (dataCurrentValue === 3.5 &&
+          data2CurrentValue === 4.5 &&
+          data3CurrentValue === 9.5 &&
+          data4CurrentValue === 3.5) {
+
+          Swal.fire({
+            title: 'Congratulations!',
+            text: 'You have solved the puzzle.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            box1.value = ""
+            box2.value = ""
+            box3.value = ""
+            box4.value = ""
+
+            box1.style.backgroundColor = "white";
+            box2.style.backgroundColor = "white";
+            box3.style.backgroundColor = "white";
+            box4.style.backgroundColor = "white";
+          })
+        }
+      }
+
+    </script>
+
+
+  </body>
+
+</html>
