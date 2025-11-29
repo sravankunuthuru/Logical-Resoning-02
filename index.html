@@ -115,6 +115,18 @@
       button:hover {
         background-color: rgb(206, 4, 4);
       }
+
+      .swal2-confirm {
+        position: relative;
+        top: -10px;
+        left: 2px;
+        background-color: orange !important;
+      }
+
+      .swal2-confirm:hover {
+        background-color: darkorange !important;
+        opacity: 1 !important;
+      }
     </style>
   </head>
 
@@ -239,6 +251,7 @@
         }
         showAlert()
         ErrorAlert()
+        emptyAlert()
       }
 
       // Audio files
@@ -295,18 +308,17 @@
         const data3CurrentValue = Number(box3.value);
         const data4CurrentValue = Number(box4.value);
 
-        if (dataCurrentValue !== 3.5 ||
-          data2CurrentValue !== 4.5 ||
-          data3CurrentValue !== 9.5 ||
-          data4CurrentValue !== 3.5) {
+        if (dataCurrentValue > 0 ||
+          data2CurrentValue > 0 ||
+          data3CurrentValue > 0 ||
+          data4CurrentValue > 0) {
           wrongAudio.play()
           Swal.fire({
             title: 'Oops!',
             text: 'You have entered incorrect values.',
             icon: 'error',
             confirmButtonText: 'Try Again',
-            confirmButtonColor: '#d33', // red button
-            background: '#ffffff',       // white popup background
+            // white popup background
             color: '#000',               // black text
           }).then(() => {
             box1.value = ""
@@ -326,6 +338,30 @@
         }
       }
 
+      function emptyAlert() {
+        const box1 = document.getElementById("tableBox021");
+        const box2 = document.getElementById("tableBox022");
+        const box3 = document.getElementById("tableBox023");
+        const box4 = document.getElementById("tableBox024");
+
+        const dataCurrentValue = Number(box1.value);
+        const data2CurrentValue = Number(box2.value);
+        const data3CurrentValue = Number(box3.value);
+        const data4CurrentValue = Number(box4.value);
+
+        if (dataCurrentValue === 0 ||
+          data2CurrentValue === 0 ||
+          data3CurrentValue === 0 ||
+          data4CurrentValue === 0) {
+          Swal.fire({
+            title: 'Warning!',
+            text: 'Please fill in all the boxes.',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+          })
+        }
+
+      }
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
